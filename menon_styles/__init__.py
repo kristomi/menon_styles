@@ -29,7 +29,7 @@ def menon_logo():
 
 def menon_matplotlib():
     """
-    Defines the Menon colors and the default color scheme in matplotlib
+    Sets the Menon colors as the default color scheme in matplotlib
     """
     from cycler import cycler
     plt.style.use('bmh')
@@ -38,9 +38,14 @@ def menon_matplotlib():
 
 
 def menon_styles():
+    """
+    Applies Menon colors and numberings to headings in Jupyter notebooks,
+    and adds the Menon logo to the top header (h1).
+    Also sets the Menon colors to the default color scheme in Matplotlib.
+    """
     menon_matplotlib()
     css_styles = ((curr_path / 'menon_logo.css').read_text()
                   + '\n'
                   + (curr_path / 'menon_headings.css').read_text()
-                 )
+                  )
     return HTML(css_styles)
