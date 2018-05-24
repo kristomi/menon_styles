@@ -1,30 +1,124 @@
 from IPython.display import HTML
 import matplotlib.pyplot as plt
-import collections
-import json
-from pathlib import Path
-import os
-import sys
 
-curr_path = Path(os.path.realpath(__file__)).parent
+menon_farger = {"Bl\u00e5": [0.22265625, 0.33984375, 0.45703125],
+                "Oransje": [0.83984375, 0.49609375, 0.0859375],
+                "M\u00f8rk gr\u00e5": [0.44921875, 0.48046875, 0.5078125],
+                "Gr\u00e5": [0.671875, 0.69921875, 0.71875],
+                "Gr\u00f8nn": [0.6484375, 0.69921875, 0.25],
+                "M\u00f8rk r\u00f8d": [0.578125, 0.06640625, 0.0],
+                "Klar bl\u00e5": [0.015625, 0.1953125, 0.99609375],
+                "Turkis": [0.45703125, 0.83203125, 0.99609375]
+                }
 
-farge_path = curr_path / 'menon_farger.json'
-menon_farger = json.loads(farge_path.read_text(),
-                          object_pairs_hook=collections.OrderedDict)
+headings = """
+<style>
+html {
+  font-size: 62.5% !important;
+}
+table.dataframe {
+    border-collapse: collapse;
+    border: none;
+}
+table.dataframe tr {
+    border: none;
+}
+table.dataframe td, table.dataframe th {
+    margin: 0;
+    border: 1px solid white;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+}
+table.dataframe th:not(:empty) {
+    text-align: left;
+    font-weight: normal;
+}
+table.dataframe tr:nth-child(2) th:empty {
+    border-left: none;
+    border-right: 1px dashed #888;
+}
+table.dataframe td {
+    border: 2px solid #ccf;
+}
+tr:nth-child(2) tr:hover {
+  background: yellow;
+}
+body {
+  counter-reset: section subsection subsubsection;
+}
+
+h2 {
+  counter-reset: subsection;
+}
+
+h2:before {
+    counter-increment: section;
+    content: counter(section) ". ";
+}
+
+h3 {
+  counter-reset: subsubsection;
+}
+h3:before {
+    counter-increment: subsection;
+    content: counter(section) "." counter(subsection) " ";
+}
+
+h4:before {
+    counter-increment: subsubsection;
+    content: counter(section) "." counter(subsection) "." counter(subsubsection) " ";
+}
+
+div.text_cell_render {
+    font-family: Calibri, sans-serif !important;
+    font-size: 10pt;
+}
+.text_cell.rendered h1, h2, h3, h4 {
+  font-family: Calibri, sans-serif !important;
+	margin-top: 0 !important;
+  margin-bottom: 2rem !important;
+  font-weight: bold !important; }
+.text_cell.rendered h1 {
+  font-size: 30pt;
+}
+.text_cell.rendered h2 {
+	font-size: 24pt;
+  color: rgb(57,87,117);
+}
+.text_cell.rendered h3 {
+	font-size: 20pt;
+  color: rgb(214,127,22);
+}
+.text_cell.rendered h4 {
+	font-size: 14pt;
+  color: rgb(57,87,117);
+}
+</style>
+"""
+
+logo = """
+<style>
+h1:after {
+    content: url('https://www.menon.no/wp-content/uploads/2017logo@2x.png');
+    float: right;
+}
+</style>
+"""
+
 
 
 def menon_headings():
     """
     Applies Menon colors and numbering to headings in Jupyter notebooks
     """
-    return HTML((curr_path / 'menon_headings.css').read_text())
+    return HTML(headings)
 
 
 def menon_logo():
     """
     Adds the Menon logo to the top header (h1) in Jupyter notebooks
     """
-    return HTML((curr_path / 'menon_logo.css').read_text())
+    return HTML(logo)
 
 
 def menon_matplotlib():
@@ -44,8 +138,9 @@ def menon_styles():
     Also sets the Menon colors to the default color scheme in Matplotlib.
     """
     menon_matplotlib()
-    css_styles = ((curr_path / 'menon_logo.css').read_text()
-                  + '\n'
-                  + (curr_path / 'menon_headings.css').read_text()
-                  )
+    css_styles = headings + '\n' + logo
     return HTML(css_styles)
+
+
+if __name__ == '__main__':
+    menon_styles()
