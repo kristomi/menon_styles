@@ -8,4 +8,4 @@ Packaging and installation based on
 * http://python-packaging.readthedocs.io/en/latest/minimal.html
 
 # Usage
-pip install git://github.com/kristomi/menon_styles.git
+pip install git+https://github.com/kristomi/menon_styles.git
