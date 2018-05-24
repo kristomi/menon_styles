@@ -1,28 +1,46 @@
 from IPython.display import HTML
 import matplotlib.pyplot as plt
 import collections
+import json
 from pathlib import Path
+import os
+import sys
+
+curr_path = Path(os.path.realpath(__file__)).parent
+
+farge_path = curr_path / 'menon_farger.json'
+menon_farger = json.loads(farge_path.read_text(),
+                          object_pairs_hook=collections.OrderedDict)
 
 
 def menon_headings():
-    HTML(Path('menon_headings.css').read_text().decode('utf-8'))
+    """
+    Applies Menon colors and numbering to headings in Jupyter notebooks
+    """
+    return HTML((curr_path / 'menon_headings.css').read_text())
 
 
 def menon_logo():
-    HTML(Path('menon_logo.css').read_text().decode('utf-8'))
+    """
+    Adds the Menon logo to the top header (h1) in Jupyter notebooks
+    """
+    return HTML((curr_path / 'menon_logo.css').read_text())
 
 
 def menon_matplotlib():
-    import json
+    """
+    Defines the Menon colors and the default color scheme in matplotlib
+    """
     from cycler import cycler
-    menon_farger = json.load(Path('menon_farger.json').read_text(),
-                             object_pairs_hook=collections.OrderedDict)
     plt.style.use('bmh')
     plt.rcParams['axes.prop_cycle'] = cycler(
         color=[color for _, color in menon_farger.items()])
 
 
 def menon_styles():
-    menon_headings()
-    menon_logo()
     menon_matplotlib()
+    css_styles = ((curr_path / 'menon_logo.css').read_text()
+                  + '\n'
+                  + (curr_path / 'menon_headings.css').read_text()
+                 )
+    return HTML(css_styles)
