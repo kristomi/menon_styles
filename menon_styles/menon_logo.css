@@ -1,0 +1,6 @@
+<style>
+h1:after {
+    content: url('https://www.menon.no/wp-content/uploads/2017logo@2x.png');
+    float: right;
+}
+</style>

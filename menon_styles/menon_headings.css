@@ -1,0 +1,82 @@
+<style>
+html {
+  font-size: 62.5% !important;
+}
+table.dataframe {
+    border-collapse: collapse;
+    border: none;
+}
+table.dataframe tr {
+    border: none;
+}
+table.dataframe td, table.dataframe th {
+    margin: 0;
+    border: 1px solid white;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+}
+table.dataframe th:not(:empty) {
+    text-align: left;
+    font-weight: normal;
+}
+table.dataframe tr:nth-child(2) th:empty {
+    border-left: none;
+    border-right: 1px dashed #888;
+}
+table.dataframe td {
+    border: 2px solid #ccf;
+}
+tr:nth-child(2) tr:hover {
+  background: yellow;
+}
+body {
+  counter-reset: section subsection subsubsection;
+}
+
+h2 {
+  counter-reset: subsection;
+}
+
+h2:before {
+    counter-increment: section;
+    content: counter(section) ". ";
+}
+
+h3 {
+  counter-reset: subsubsection;
+}
+h3:before {
+    counter-increment: subsection;
+    content: counter(section) "." counter(subsection) " ";
+}
+
+h4:before {
+    counter-increment: subsubsection;
+    content: counter(section) "." counter(subsection) "." counter(subsubsection) " ";
+}
+
+div.text_cell_render {
+    font-family: Calibri, sans-serif !important;
+    font-size: 10pt;
+}
+.text_cell.rendered h1, h2, h3, h4 {
+  font-family: Calibri, sans-serif !important;
+	margin-top: 0 !important;
+  margin-bottom: 2rem !important;
+  font-weight: bold !important; }
+.text_cell.rendered h1 {
+  font-size: 30pt;
+}
+.text_cell.rendered h2 {
+	font-size: 24pt;
+  color: rgb(57,87,117);
+}
+.text_cell.rendered h3 {
+	font-size: 20pt;
+  color: rgb(214,127,22);
+}
+.text_cell.rendered h4 {
+	font-size: 14pt;
+  color: rgb(57,87,117);
+}
+</style>
