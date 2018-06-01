@@ -41,31 +41,6 @@ table.dataframe td {
 tr:nth-child(2) tr:hover {
   background: yellow;
 }
-body {
-  counter-reset: section subsection subsubsection;
-}
-
-h2 {
-  counter-reset: subsection;
-}
-
-h2:before {
-    counter-increment: section;
-    content: counter(section) ". ";
-}
-
-h3 {
-  counter-reset: subsubsection;
-}
-h3:before {
-    counter-increment: subsection;
-    content: counter(section) "." counter(subsection) " ";
-}
-
-h4:before {
-    counter-increment: subsubsection;
-    content: counter(section) "." counter(subsection) "." counter(subsubsection) " ";
-}
 
 div.text_cell_render {
     font-family: Calibri, sans-serif !important;
