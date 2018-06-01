@@ -1,1 +1,3 @@
 *.pyc
+.DS_Store
+menon_styles/.DS_Store
