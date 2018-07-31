@@ -104,6 +104,14 @@ def menon_matplotlib():
         color=[color for _, color in menon_farger.items()])
 
 
+def menon_pandas():
+    try:
+        import pandas as pd
+        pd.options.display.float_format = '{:,.2f}'.format
+    except ModuleNotFoundError:
+        print('Pandas module not found. No problem')
+        
+
 def menon_styles():
     """
     Applies Menon colors and numberings to headings in Jupyter notebooks,
@@ -111,6 +119,7 @@ def menon_styles():
     Also sets the Menon colors to the default color scheme in Matplotlib.
     """
     menon_matplotlib()
+    menon_pandas()
     css_styles = headings + '\n' + logo
     return HTML(css_styles)
 
